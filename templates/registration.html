@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{
+  font-family: Calibri, Helvetica, sans-serif;
+  background-color: black;
+}
+.container {
+    padding: 50px;
+  background-color: rgb(167, 188, 196);
+}
+
+input[type=text], input[type=password], textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #c7bebe;
+}
+input[type=text]:focus, input[type=password]:focus {
+  background-color: rgb(131, 118, 118);
+  outline: none;
+}
+ div {
+            padding: 10px 0;
+         }
+hr {
+  border: 1px solid #b49595;
+  margin-bottom: 25px;
+}
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+.registerbtn:hover {
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+<form action="register" method="post">
+  {% csrf_token %}
+  <div class="container">
+  <center> <h1> Register</h1> </center>
+  <hr>
+  <label> Firstname </label>
+<input type="text" name="firstname" placeholder= "Firstname" size="15" required />
+<label> Lastname: </label>
+<input type="text" name="lastname" placeholder="Lastname" size="15"required />
+
+<label> Username: </label>
+<input type="text" name="username" placeholder="Username" size="15"required />
+
+
+<label for="email"><b>Email</b></label>
+<input type="text" placeholder="Enter Email" name="email" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password1" required>
+
+    <label for="psw-repeat"><b>Re-type Password</b></label>
+    <input type="password" placeholder="Retype Password" name="password2" required>
+    <button type="submit" class="registerbtn">Register</button>
+</form>
+<div>
+  {% for message in messages %}
+  <h4>{{message}}</h4>
+  {% endfor %}
+</div>
+</body>
+</html>
+{% endblock %}
